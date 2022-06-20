@@ -2,9 +2,9 @@ import abc
 from data import Data, DataAggregator
 
 
-class Convertor(abc.ABC):
+class Converter(abc.ABC):
     def __init__(self, aggregator: DataAggregator):
-        self.aggregator = aggregator
+        self._aggregator = aggregator
 
     @abc.abstractmethod
     def getIndividualScore(self, person: str) -> int:
