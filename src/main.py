@@ -3,6 +3,14 @@ from project.data import Meeting, ProjectDataAggregator
 from project.reportgenerator import ProjectReportGenerator
 
 
+def churchDemo():
+    pass
+
+
+def EEDemo():
+    pass
+
+
 def projectDemo():
     m1 = Meeting({
         'Harry': [
