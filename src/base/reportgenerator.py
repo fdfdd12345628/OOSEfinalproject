@@ -1,5 +1,6 @@
 import abc
-from converter import Converter
+
+from .converter import Converter
 
 
 class ReportGenerator(abc.ABC):

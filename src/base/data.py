@@ -4,25 +4,22 @@ import abc
 class Data(abc.ABC):
     def __init__(self):
         self._practitioners = [[]]
-        self._activityContribution = 0
 
     @abc.abstractmethod
     def getIndividualScore(self, person: str) -> int:
         return NotImplemented
 
-    @abc.abstractmethod
-    def getPractitioners(self) -> tuple[tuple[str]]:
-        return NotImplemented
+    def getPractitioners(self) -> list[list[str]]:
+        return self._practitioners
 
 
 class DataAggregator(abc.ABC):
     def __init__(self):
         self._events = []
 
-    @abc.abstractmethod
-    def getEvents(self) -> tuple[Data]:
-        return NotImplemented
+    def getEvents(self) -> list[Data]:
+        return self._events
 
-    @abc.abstractmethod
     def add(self, event: Data) -> bool:
-        return NotImplemented
+        self._events.append(event)
+        return True

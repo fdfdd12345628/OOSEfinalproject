@@ -1,5 +1,6 @@
 import abc
-from data import Data, DataAggregator
+
+from .data import DataAggregator
 
 
 class Converter(abc.ABC):
