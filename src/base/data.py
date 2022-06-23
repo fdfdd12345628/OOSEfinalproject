@@ -3,13 +3,13 @@ import abc
 
 class Data(abc.ABC):
     def __init__(self):
-        self._practitioners = [[]]
+        self._practitioners = {}
 
     @abc.abstractmethod
     def getIndividualScore(self, person: str) -> float:
         return NotImplemented
 
-    def getPractitioners(self) -> list[list[str]]:
+    def getPractitioners(self) -> dict:
         return self._practitioners
 
 
