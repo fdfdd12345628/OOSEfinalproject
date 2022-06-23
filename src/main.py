@@ -14,7 +14,7 @@ def churchDemo():
         'Kevin': [
             'host', 3, 3, 3
         ],
-        'Stephen': [
+        'Steph': [
             'participant', 3, 2, 1
         ],
         'John': [
@@ -38,7 +38,7 @@ def churchDemo():
         'Potter': [
             'leader', 5, 5, 5
         ],
-        'Christine': [
+        'Chris': [
             'participant', 3, 5, 4
         ],
         'John': [
@@ -46,10 +46,10 @@ def churchDemo():
         ]
     })
     t2 = Task({
-        'Christine': [
+        'Chris': [
             'leader', 5, 5, 5
         ],
-        'Stephen': [
+        'Steph': [
             'participant', 5, 5, 5
         ]
     })
