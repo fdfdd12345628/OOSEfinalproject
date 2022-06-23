@@ -8,7 +8,7 @@ class Converter(abc.ABC):
         self._aggregator = aggregator
 
     @abc.abstractmethod
-    def getIndividualScore(self, person: str) -> int:
+    def getIndividualScore(self, person: str) -> float:
         return NotImplemented
 
     @abc.abstractmethod

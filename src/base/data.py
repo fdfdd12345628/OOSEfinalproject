@@ -6,7 +6,7 @@ class Data(abc.ABC):
         self._practitioners = [[]]
 
     @abc.abstractmethod
-    def getIndividualScore(self, person: str) -> int:
+    def getIndividualScore(self, person: str) -> float:
         return NotImplemented
 
     def getPractitioners(self) -> list[list[str]]:

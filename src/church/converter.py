@@ -4,7 +4,7 @@ from .data import Meeting, Expenditure, Task
 from .conf import *
 
 class ChurchConverter(Converter):
-    def getIndividualScore(self, person: str) -> int:
+    def getIndividualScore(self, person: str) -> float:
         totalScore = 0
         events = self._aggregator.getEvents()
 

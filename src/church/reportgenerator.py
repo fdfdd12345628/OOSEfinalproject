@@ -30,3 +30,4 @@ class ChurchReportGenerator(ReportGenerator):
             i += 1
 
         book.save(filePath)
+        return True

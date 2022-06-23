@@ -31,3 +31,4 @@ class ProjectReportGenerator(ReportGenerator):
             i += 1
 
         book.save(filePath)
+        return True
