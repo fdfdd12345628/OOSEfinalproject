@@ -1,8 +1,9 @@
 from base.converter import Converter
-
+from base.data import Data
+from .data import Meeting, Expenditure, Task, GitRecord
+from .conf import *
 
 class ProjectConverter(Converter):
-
     def getIndividualScore(self, person: str) -> int:
         totalScore = 0
         events = self._aggregator.getEvents()
@@ -14,6 +15,7 @@ class ProjectConverter(Converter):
 
         return totalScore
 
+    
     def getGroupScore(self, person: str) -> dict:
         groupScore = {}
         events = self._aggregator.getEvents()

@@ -1,55 +1,78 @@
+from pickle import TRUE
+from church.data import Expenditure, Task
+from project.converter import ProjectConverter
+from project.data import GitRecord, Meeting, ProjectDataAggregator
+from project.reportgenerator import ProjectReportGenerator
+
+
 def churchDemo():
+    m1 = Meeting({
+        'Potter': [
+            'host', 1, 2, 5
+        ],
+        'Kevin': [
+            'participant', 4, 5, 3
+        ]
+    })
+    m2 = Meeting({
+        'Kevin': [
+            'host', 3, 3, 3
+        ],
+        'Kelvin': [
+            'participant', 3, 2, 1
+        ],
+        'John': [
+            'participant', 5, 5, 5
+        ],
+        'Peter': [
+            'participant', 2, 4, 4
+        ]
+    })
+    e1 = Expenditure({
+        'Lily': [
+            'spender', True, True
+        ]
+    })
+    e2 = Expenditure({
+        'Tim': [
+            'spender', False, False 
+        ]
+    })
+    t1 = Task({
+        'Pastor': [
+            'leader', 5, 5, 5
+        ],
+        'Chris': [
+            'participant', 3, 5, 4
+        ],
+        'Allen': [
+            'participant', 5, 5, 5
+        ]
+    })
+    t2 = Task({
+        'Christine': [
+            'leader', 5, 5, 5
+        ],
+        'Stephen': [
+            'participant', 5, 5, 5
+        ]
+    })
+    dataAggregator = ProjectDataAggregator()
+    dataAggregator.add(m1)
+    dataAggregator.add(m2)
+    dataAggregator.add(e1)
+    dataAggregator.add(e2)
+    dataAggregator.add(t1)
+    dataAggregator.add(t2)
+    convertor = ProjectConverter(dataAggregator)
+    reportgenerator = ProjectReportGenerator(convertor)
+    reportgenerator.generate('Tim', 'report.xls')
+
+def EEDemo():
     pass
 
 
-def EEDemo():
-    import EE.conf as conf
-    from EE.data import GASTScore, SchoolScore, ProgramType, Competition, SchoolActivity, EESelectionDataAggregator
-    from EE.converter import EESelectionConverter
-    from EE.reportgenerator import EESelectionReportGenerator
-
-    # Range 0~5 for GAST score
-    GASTScore1 = GASTScore({
-        conf.common_name: ['participant', 5]
-    })
-    # Range 0~5 for school score
-    SchoolScore1 = SchoolScore({
-        conf.common_name: ['participant', 4]
-    })
-    ProgramType1 = ProgramType({
-        conf.common_name: ['participant', conf.normal_program_type]
-    })
-    Competition1 = Competition({
-        conf.common_name: ['participant', conf.EE_related_competition_type]
-    })
-    Competition2 = Competition({
-        conf.common_name: ['participant', conf.normal_competition_type]
-    })
-    SchoolActivity1 = SchoolActivity({
-        conf.common_name: ['participant', conf.EE_related_activity_type]
-    })
-    SchoolActivity2 = SchoolActivity({
-        conf.common_name: ['participant', conf.EE_related_activity_type]
-    })
-
-    dataAggregator = EESelectionDataAggregator()
-    dataAggregator.add(GASTScore1)
-    dataAggregator.add(SchoolScore1)
-    dataAggregator.add(ProgramType1)
-    dataAggregator.add(Competition1)
-    dataAggregator.add(Competition2)
-    dataAggregator.add(SchoolActivity1)
-    dataAggregator.add(SchoolActivity2)
-
-    convertor = EESelectionConverter(dataAggregator)
-    reportgenerator = EESelectionReportGenerator(convertor)
-    reportgenerator.generate(conf.common_name, 'report.xls')
-
-
 def projectDemo():
-    from project.converter import ProjectConverter
-    from project.data import Meeting, ProjectDataAggregator
-    from project.reportgenerator import ProjectReportGenerator
     m1 = Meeting({
         'Harry': [
             'host', 1, 2, 5
@@ -69,13 +92,58 @@ def projectDemo():
             'participant', 5, 5, 5
         ],
     })
+    e1 = Expenditure({
+        'Hank': [
+            'spender', True, False
+        ]
+    })
+    e2 = Expenditure({
+        'Billy': [
+            'spender', False, True 
+        ]
+    })
+    t1 = Task({
+        'Sean': [
+            'leader', 5, 5, 5
+        ],
+        'Daniel': [
+            'participant', 3, 3, 2
+        ],
+        'Eric': [
+            'participant', 4, 4, 5
+        ]
+    })
+    t2 = Task({
+        'Joe': [
+            'leader', 4, 3, 2
+        ],
+        'Daniel': [
+            'participant', 2, 3, 4
+        ],
+        'Hank': [
+            'participant', 3, 3, 3
+        ]
+    })
+    g1 = GitRecord({
+        'Eric': [
+            'committer', True, 5
+        ],
+        'Joe': [
+            'committer', True, 4
+        ]
+    })
     dataAggregator = ProjectDataAggregator()
     dataAggregator.add(m1)
     dataAggregator.add(m2)
+    dataAggregator.add(e1)
+    dataAggregator.add(e2)
+    dataAggregator.add(t1)
+    dataAggregator.add(t2)
     convertor = ProjectConverter(dataAggregator)
     reportgenerator = ProjectReportGenerator(convertor)
     reportgenerator.generate('Harry', 'report.xls')
 
 
 if __name__ == '__main__':
-    EEDemo()
+    churchDemo()
+    projectDemo()
