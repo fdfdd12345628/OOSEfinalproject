@@ -1,4 +1,3 @@
-from pickle import TRUE
 from church.data import Expenditure, Task
 from project.converter import ProjectConverter
 from project.data import GitRecord, Meeting, ProjectDataAggregator
