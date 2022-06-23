@@ -1,5 +1,68 @@
 def churchDemo():
-    pass
+    from church.data import Expenditure, Task, ChurchDataAggregator, Meeting
+    from church.converter import ChurchConverter
+    from church.reportgenerator import ChurchReportGenerator
+    m1 = Meeting({
+        'Potter': [
+            'host', 1, 2, 5
+        ],
+        'Kevin': [
+            'participant', 4, 5, 3
+        ]
+    })
+    m2 = Meeting({
+        'Kevin': [
+            'host', 3, 3, 3
+        ],
+        'Stephen': [
+            'participant', 3, 2, 1
+        ],
+        'John': [
+            'participant', 5, 5, 5
+        ],
+        'Potter': [
+            'participant', 2, 4, 4
+        ]
+    })
+    e1 = Expenditure({
+        'Potter': [
+            'spender', True, True
+        ]
+    })
+    e2 = Expenditure({
+        'Kevin': [
+            'spender', False, False
+        ]
+    })
+    t1 = Task({
+        'Potter': [
+            'leader', 5, 5, 5
+        ],
+        'Christine': [
+            'participant', 3, 5, 4
+        ],
+        'John': [
+            'participant', 5, 5, 5
+        ]
+    })
+    t2 = Task({
+        'Christine': [
+            'leader', 5, 5, 5
+        ],
+        'Stephen': [
+            'participant', 5, 5, 5
+        ]
+    })
+    dataAggregator = ChurchDataAggregator()
+    dataAggregator.add(m1)
+    dataAggregator.add(m2)
+    dataAggregator.add(e1)
+    dataAggregator.add(e2)
+    dataAggregator.add(t1)
+    dataAggregator.add(t2)
+    convertor = ChurchConverter(dataAggregator)
+    reportgenerator = ChurchReportGenerator(convertor)
+    reportgenerator.generate('Potter', 'churchReport.xls')
 
 
 def EEDemo():
@@ -43,12 +106,12 @@ def EEDemo():
 
     convertor = EESelectionConverter(dataAggregator)
     reportgenerator = EESelectionReportGenerator(convertor)
-    reportgenerator.generate(conf.common_name, 'report.xls')
+    reportgenerator.generate(conf.common_name, 'EEReport.xls')
 
 
 def projectDemo():
     from project.converter import ProjectConverter
-    from project.data import Meeting, ProjectDataAggregator
+    from project.data import GitRecord, Meeting, ProjectDataAggregator, Task, Expenditure
     from project.reportgenerator import ProjectReportGenerator
     m1 = Meeting({
         'Harry': [
@@ -69,13 +132,62 @@ def projectDemo():
             'participant', 5, 5, 5
         ],
     })
+    e1 = Expenditure({
+        'Harry': [
+            'spender', True, False
+        ]
+    })
+    e2 = Expenditure({
+        'Billy': [
+            'spender', False, True
+        ]
+    })
+    t1 = Task({
+        'Sean': [
+            'leader', 5, 5, 5
+        ],
+        'Harry': [
+            'participant', 3, 3, 2
+        ],
+        'Eric': [
+            'participant', 4, 4, 5
+        ]
+    })
+    t2 = Task({
+        'Sean': [
+            'leader', 4, 3, 2
+        ],
+        'Jane': [
+            'participant', 2, 3, 4
+        ],
+        'Eric': [
+            'participant', 3, 3, 3
+        ]
+    })
+    g1 = GitRecord({
+        'Eric': [
+            'committer', True, 5
+        ],
+        'Sean': [
+            'committer', True, 4
+        ]
+    })
     dataAggregator = ProjectDataAggregator()
     dataAggregator.add(m1)
     dataAggregator.add(m2)
+    dataAggregator.add(e1)
+    dataAggregator.add(e2)
+    dataAggregator.add(t1)
+    dataAggregator.add(t2)
+    dataAggregator.add(g1)
     convertor = ProjectConverter(dataAggregator)
     reportgenerator = ProjectReportGenerator(convertor)
-    reportgenerator.generate('Harry', 'report.xls')
+    reportgenerator.generate('Jane', 'projectReport.xls')
 
 
 if __name__ == '__main__':
+    churchDemo()
+    projectDemo()
     EEDemo()
+    print('Done')
+   
