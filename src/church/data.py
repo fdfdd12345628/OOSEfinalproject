@@ -11,12 +11,14 @@ class Meeting(Data):
 
         # Find the person with exact name
         for p in self._practitioners:
-            if p[0] == person:
+            if p == person:
                 personActivity = self._practitioners[p]
                 break
 
         # Assign position value by different position
         positionValue = 0
+        if personActivity== None:
+            return 0
         if personActivity[0] == 'host':
             positionValue = 1 * personActivity[3]
         elif personActivity[0] == 'participant':
@@ -33,7 +35,8 @@ class Expenditure(Data):
 
     # Return corresponing score according to configuration file
     def getIndividualScore(self, person: str) -> float:
-        personActivity = self._practitioners[0]
+        # personActivity = self._practitioners[0]
+        personActivity=list(self._practitioners.items())[0][1]
         if(personActivity[1] != personActivity[2]):
             return common_score
         elif(not personActivity[1] and not personActivity[2]):
@@ -49,12 +52,14 @@ class Task(Data):
 
         # Find the person with exact name
         for p in self._practitioners:
-            if p[0] == person:
+            if p == person:
                 personActivity = self._practitioners[p]
                 break
 
         # Assign position value by different position
         positionValue = 0
+        if personActivity== None:
+            return 0
         if personActivity[0] == 'leader':
             positionValue = 1 * personActivity[3]
         elif personActivity[0] == 'participant':
